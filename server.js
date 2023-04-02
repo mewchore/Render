@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 //获取系统进程表
 app.get("/status", function (req, res) {
-  let cmdStr = "pm2 list; ps -ef";
+  let cmdStr = "ps -ef";
   exec(cmdStr, function (err, stdout, stderr) {
     if (err) {
       res.type("html").send("<pre>命令行执行错误：\n" + err + "</pre>");
@@ -51,17 +51,17 @@ app.get("/listen", function (req, res) {
   });
 
 //获取节点数据
-app.get("/list", function (req, res) {
-    let cmdStr = "bash argo.sh";
-    exec(cmdStr, function (err, stdout, stderr) {
-      if (err) {
-        res.type("html").send("<pre>命令行执行错误：\n" + err + "</pre>");
-      }
-      else {
-        res.type("html").send("<pre>节点数据：\n\n" + stdout + "</pre>");
-      }
-    });
-  });
+// app.get("/list", function (req, res) {
+//     let cmdStr = "bash argo.sh";
+//     exec(cmdStr, function (err, stdout, stderr) {
+//       if (err) {
+//         res.type("html").send("<pre>命令行执行错误：\n" + err + "</pre>");
+//       }
+//       else {
+//         res.type("html").send("<pre>节点数据：\n\n" + stdout + "</pre>");
+//       }
+//     });
+//   });
 
 //获取系统版本、内存信息
 app.get("/info", function (req, res) {
